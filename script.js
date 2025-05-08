@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const messageDiv = document.getElementById('message');
 
     // !!! IMPORTANT: Replace YOUR_VERCEL_BACKEND_URL with the URL you got from Vercel for your 'number2' backend!!!
-    const BACKEND_API_URL = 'number2.vercel.app';
+    const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app/logindata';
 
     loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
