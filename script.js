@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ### VERY IMPORTANT: Replace YOUR_ACTUAL_VERCEL_BACKEND_URL with your real URL ###
     // ### Example: 'https://number2-yourusername.vercel.app/logindata'          ###
     // #############################################################################
-    const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app//logindata';
+    const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app/logindata';
 
     if (BACKEND_API_URL === 'https://number2-adamahmeddds-projects.vercel.app//logindata') {
         console.error("CRITICAL:https://number2-adamahmeddds-projects.vercel.app/ in script.js!");
