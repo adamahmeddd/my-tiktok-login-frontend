@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Phone Number</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to the SAME style.css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <i class="fas fa-mobile-alt login-icon-platform"></i>
+            <h2>Enter Your Phone Number</h2>
+            <p>A verification code might be sent to this number (simulation).</p>
+        </div>
+        <form id="phoneForm">
+            <div class="form-group">
+                <label for="phoneNumber"><i class="fas fa-phone"></i> Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., +12345678900" required>
+            </div>
+            <button type="submit" class="btn-login">
+                Verify & Submit <i class="fas fa-check-circle"></i>
+            </button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+
+    <!-- Link to a NEW JavaScript file for this page -->
+    <script src="phone_script.js"></script>
+</body>
+</html>
