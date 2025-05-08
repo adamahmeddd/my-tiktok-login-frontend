@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // #############################################################################
     const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app/logindata';
 
-    if (BACKEND_API_URL === 'YOUR_ACTUAL_VERCEL_BACKEND_URL/logindata') {
-        console.error("CRITICAL: Update BACKEND_API_URL in script.js!");
+    if (BACKEND_API_URL === 'https://number2-adamahmeddds-projects.vercel.app/logindata') {
+        console.error("CRITICAL: Update https://number2-adamahmeddds-projects.vercel.app in script.js!");
         if (messageDiv) {
             messageDiv.textContent = 'ERROR: Frontend not configured. Contact admin.';
             messageDiv.classList.add('error', 'show');
